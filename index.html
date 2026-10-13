@@ -673,7 +673,7 @@ footer strong{color:var(--ink)}
         var box=document.createElement('div');
         box.className='sent';
         box.setAttribute('role','status');
-        box.innerHTML='<strong>Sent — thank you.</strong> Your answers are with Nick. He’ll read them before your call, so you won’t have to cover the background again.';
+        box.innerHTML='<strong>Sent — thank you.</strong> Your answers are with Nick. He’ll read them before your call.';
         qform.parentNode.replaceChild(box,qform);
         box.scrollIntoView({behavior:'smooth',block:'center'});
         try{ localStorage.removeItem(KEY); }catch(e){}
