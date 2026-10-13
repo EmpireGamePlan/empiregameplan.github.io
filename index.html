@@ -61,7 +61,10 @@ a{color:inherit}
 .step-n{font-family:var(--display); font-size:11px; font-weight:700; letter-spacing:.18em; color:var(--empire); white-space:nowrap}
 
 header.top{padding-block:34px 28px; border-bottom:1px solid var(--line)}
-.logo{display:block; width:320px; max-width:84%; height:auto; margin:0 0 30px}
+.logo{display:block; width:100%; height:auto; margin:0 0 32px; border-radius:12px; border:1px solid var(--line)}
+.sent{background:rgba(139,92,246,.12); border:1px solid rgba(139,92,246,.45); border-radius:11px;
+  padding:22px; font-size:16.5px; line-height:1.55}
+.sent strong{font-family:var(--display); font-weight:600}
 .iii{font-family:var(--display); font-size:11px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--empire); margin:14px 0 0}
 section{padding-block:38px; border-bottom:1px solid var(--line)}
 section:last-of-type{border-bottom:0}
@@ -649,6 +652,37 @@ footer strong{color:var(--ink)}
   });
 
   var stageNames={'1':'1 — The Job','2':'2 — The Business','3':'3 — The Empire'};
+
+  /* Submit without leaving the page: post in the background, confirm inline. */
+  var qform=document.getElementById('qform');
+  var MAILTO='nick.weir@aaronsansonilive.com';
+  if(qform && window.fetch && window.FormData){
+    qform.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var btn=qform.querySelector('button[type="submit"]');
+      var original=btn.textContent;
+      btn.disabled=true; btn.textContent='Sending…';
+      fetch('https://formsubmit.co/ajax/'+MAILTO,{
+        method:'POST',
+        headers:{'Accept':'application/json'},
+        body:new FormData(qform)
+      }).then(function(r){
+        if(!r.ok) throw new Error('bad response');
+        return r.json();
+      }).then(function(){
+        var box=document.createElement('div');
+        box.className='sent';
+        box.setAttribute('role','status');
+        box.innerHTML='<strong>Sent — thank you.</strong> Your answers are with Nick. He’ll read them before your call, so you won’t have to cover the background again.';
+        qform.parentNode.replaceChild(box,qform);
+        box.scrollIntoView({behavior:'smooth',block:'center'});
+        try{ localStorage.removeItem(KEY); }catch(e){}
+      }).catch(function(){
+        btn.disabled=false; btn.textContent=original;
+        if(note) note.textContent='Could not send just then — copy your answers and email them to '+MAILTO+'.';
+      });
+    });
+  }
 
   /* Stage gate: show only the path that matches. */
   var paths={'1':'path-employed','2':'path-owner','3':'path-empire'};
