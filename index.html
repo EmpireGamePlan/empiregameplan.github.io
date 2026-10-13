@@ -78,8 +78,8 @@ section:last-of-type{border-bottom:0}
   border:1px solid rgba(139,92,246,.42); padding:8px 14px; border-radius:999px}
 
 ul.ticks{list-style:none; margin:0; padding:0; display:grid; gap:11px}
-ul.ticks li{display:flex; gap:11px; align-items:flex-start}
-ul.ticks li::before{content:""; flex:0 0 7px; width:7px; height:7px; margin-top:9px; border-radius:2px; background:var(--empire)}
+ul.ticks li{position:relative; padding-left:19px}
+ul.ticks li::before{content:""; position:absolute; left:0; top:9px; width:7px; height:7px; border-radius:2px; background:var(--empire)}
 
 /* stage picker */
 .stages{display:grid; gap:12px; margin:20px 0 0}
@@ -171,7 +171,7 @@ button.ghost:hover{border-color:var(--ink-dim)}
 
 /* guarantee */
 .guar{border:1px solid rgba(242,193,78,.4); background:rgba(242,193,78,.07); border-radius:12px; padding:34px 26px; text-align:center}
-.guar img{display:block; width:320px; max-width:82%; height:auto; margin:0 auto 22px}
+.guar img{display:block; width:320px; max-width:82%; height:auto; margin:0 auto 22px; border-radius:10px}
 .guar .cap{font-family:var(--display); font-size:13px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin:0}
 .guar h3{margin:12px 0 14px; font-size:clamp(24px,4.6vw,32px); font-weight:700}
 .guar p.sm{font-size:16.5px; max-width:52ch; margin-inline:auto}
@@ -219,7 +219,7 @@ footer strong{color:var(--ink)}
   <img class="logo" src="img/asg-logo.png" alt="Aaron Sansoni Group">
   <h1>Your Empire GamePlan call is confirmed</h1>
   <p class="iii">Income &middot; Impact &middot; Influence</p>
-  <p class="lede" style="margin-top:22px">Watch the video below, tell the page where you're at, and it'll show you the one path that's relevant to you. About fifteen minutes all up.</p>
+  <p class="lede" style="margin-top:22px">Send me your six answers, watch Aaron's welcome, then tell the page where you're at and it'll open the one path that's relevant to you. About fifteen minutes all up.</p>
   <p class="sm dim" style="margin:0">My job isn't to talk anyone into anything. It's to make sure you arrive informed enough to make a good decision either way.</p>
 </header>
 
