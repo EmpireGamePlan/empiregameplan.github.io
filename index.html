@@ -235,13 +235,12 @@ footer strong{color:var(--ink)}
 
 <section>
   <div class="panel nick">
-    <img class="nick-badge" src="img/nick.jpg" alt="Nick Weir, Head of Success" width="78" height="78">
+    <img class="nick-badge" src="img/nick.jpg" alt="Nick, Head of Success" width="78" height="78">
     <div class="nick-body">
-      <h3>Your call is with Nick Weir, Head of Success</h3>
+      <h3>Your call is with Nick, Head of Success</h3>
       <p class="sm" style="margin:8px 0 0">I'll be the one on the Zoom with you. If anything comes up before then &mdash; you need to move the time, you have a question, your partner can't make it &mdash; reach me directly rather than going through support.</p>
       <div class="contact">
         <span class="chip">0489 008 856</span>
-        <span class="chip">nick.weir@aaronsansonilive.com</span>
       </div>
     </div>
   </div>
@@ -523,7 +522,7 @@ footer strong{color:var(--ink)}
       <p>They started with one business and always knew there was more in them. They wanted multiple income streams but had no idea how to build them.</p>
       <p>They came across Aaron at an Entrepreneur Summit and were, in their words, hook line and sinker from the moment he spoke. Four years on they are at nine businesses with two more deals in progress, tracking toward eleven.</p>
       <p class="sm dim">“We’re regular people executing to achieve the goals and the life we want. That’s where the secret is.”</p>
-      <div class="vids"><figure class="frame"><video controls preload="metadata" playsinline src="https://23960166.fs1.hubspotusercontent-na1.net/hubfs/23960166/Empire%20Mastery%20Award%20Winners/Lauren%20%E2%80%93%20%20HEALTH%20&amp;%20WELNESS%20INDUSTRY%20.mp4"></video><p class="fcap">Watch Lauren</p></figure></div>
+      <div class="vids"><figure class="frame"><video controls preload="metadata" playsinline src="https://23960166.fs1.hubspotusercontent-na1.net/hubfs/23960166/Empire%20Mastery%20Award%20Winners/Lauren%20%E2%80%93%20%20HEALTH%20&amp;%20WELNESS%20INDUSTRY%20.mp4"></video><p class="fcap">Watch Lauren</p></figure><figure class="frame"><video controls preload="metadata" playsinline poster="img/terrence-poster.jpg" src="video/terrence.mp4"></video><p class="fcap">Watch Terrence</p></figure></div>
     </div></details>
 
     <details><summary>Dominic Nitto &mdash; left school in Year 9</summary><div class="body">
@@ -731,14 +730,14 @@ footer strong{color:var(--ink)}
 
   /* Submit without leaving the page: post in the background, confirm inline. */
   var qform=document.getElementById('qform');
-  var MAILTO='nick.weir@aaronsansonilive.com';
+  var ENDPOINT='nick.weir@aaronsansonilive.com';   /* delivery address only — never shown on the page */
   if(qform && window.fetch && window.FormData){
     qform.addEventListener('submit',function(ev){
       ev.preventDefault();
       var btn=qform.querySelector('button[type="submit"]');
       var original=btn.textContent;
       btn.disabled=true; btn.textContent='Sending…';
-      fetch('https://formsubmit.co/ajax/'+MAILTO,{
+      fetch('https://formsubmit.co/ajax/'+ENDPOINT,{
         method:'POST',
         headers:{'Accept':'application/json'},
         body:new FormData(qform)
@@ -755,7 +754,7 @@ footer strong{color:var(--ink)}
         try{ localStorage.removeItem(KEY); }catch(e){}
       }).catch(function(){
         btn.disabled=false; btn.textContent=original;
-        if(note) note.textContent='Could not send just then — copy your answers and email them to '+MAILTO+'.';
+        if(note) note.textContent='Could not send just then — copy your answers and text them to Nick on 0489 008 856.';
       });
     });
   }
