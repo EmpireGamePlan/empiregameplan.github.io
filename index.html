@@ -122,9 +122,6 @@ ul.ticks li::before{content:""; position:absolute; left:0; top:9px; width:7px; h
 .film{min-width:0}
 .film .frame{margin:0}
 .film .links{margin-top:10px; padding-top:9px}
-.milestone{margin:24px auto 4px; max-width:250px; text-align:center}
-.milestone img{display:block; width:100%; max-width:100%; height:auto; border-radius:10px; border:1px solid var(--line)}
-.milestone figcaption{font-family:var(--display); font-size:13px; font-weight:500; color:var(--ink-dim); margin-top:9px; line-height:1.45}
 #totop{position:fixed; right:18px; bottom:18px; z-index:5; width:48px; height:48px; border-radius:50%;
   padding-bottom:env(safe-area-inset-bottom, 0px); border:1px solid rgba(139,92,246,.55);
   background:rgba(20,13,31,.92); color:var(--ink); cursor:pointer; display:grid; place-items:center;
@@ -134,6 +131,12 @@ ul.ticks li::before{content:""; position:absolute; left:0; top:9px; width:7px; h
 #totop:hover{border-color:var(--empire); background:rgba(139,92,246,.22)}
 #totop svg{display:block}
 @media(min-width:900px){#totop{right:28px; bottom:28px}}
+.rating{display:flex; align-items:center; justify-content:center; gap:16px; margin:26px auto 0;
+  max-width:420px; padding:18px 22px; border:1px solid var(--line); border-radius:12px; background:var(--panel)}
+.rating .score{font-family:var(--display); font-size:44px; font-weight:700; line-height:1; color:var(--gold);
+  font-variant-numeric:tabular-nums}
+.rating .rtxt{font-family:var(--display); font-size:16px; font-weight:500; line-height:1.4}
+.rating .rsub{font-weight:400; font-size:14px; color:var(--ink-dim)}
 details{border-top:1px solid var(--line)}
 details summary{cursor:pointer; list-style:none; padding:15px 30px 15px 0; position:relative;
   font-family:var(--display); font-size:16px; font-weight:500; line-height:1.45}
@@ -319,7 +322,6 @@ footer strong{color:var(--ink)}
   <p>Aaron Sansoni, known as 'Mr Empire', has built a fortune by starting, scaling and investing in over 200 companies across SAAS, hospitality, sports, retail, e-commerce, media, space, fashion, technology, entertainment and business services. He has built his own $250 million private equity firm, Sansoni Management, while showing others how to do the same. He has also raised over $1 million for charity.</p>
   <p>He has spoken at some of the most exclusive venues in the world alongside Sir Richard Branson, Arnold Schwarzenegger, Tony Robbins, Gary Vaynerchuk, David Goggins and Robert Kiyosaki. His book <em>Think Like</em> has sold more than 150,000 copies worldwide, and he was recently named the #1 Mentor in Australia by Forbes.</p>
   <p>Aaron has personally trained over 800,000 students across 135 countries. Empire Mastery alone has produced more than 20,000 graduates over a decade &mdash; he has just run the 75th of them, in Perth.</p>
-  <figure class="milestone"><img src="img/empire-75.jpg" alt="The cake from the 75th Empire Mastery, reading Live a life by design, not by default" loading="lazy"><figcaption>The 75th Empire Mastery, Perth. The bottom tier carries the line this whole thing runs on.</figcaption></figure>
   <div class="vids"><figure class="frame"><div class="ratio"><iframe src="https://www.youtube.com/embed/uJM6vhknht4" title="Who is Aaron Sansoni" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen frameborder="0"></iframe></div><p class="fcap">Who is Aaron Sansoni</p></figure></div>
   <p class="sm dim">As seen in <a href="https://www.forbes.com.au/brand-voice/uncategorized/looking-for-a-business-mentor-here-are-our-top-five-australian-entrepreneurs-to-follow-in-2023/" target="_blank" rel="noopener">Forbes</a>, <a href="https://www.entrepreneur.com/en-au/entrepreneurs/a-serial-entrepreneur-and-business-mentor-shares-how-to/432999" target="_blank" rel="noopener">Entrepreneur</a>, <a href="https://125.success.com/finalists/" target="_blank" rel="noopener">SUCCESS Magazine</a> and the <a href="https://www.afr.com/wealth/people/young-rich-list-2024-20241024-p5kl6n" target="_blank" rel="noopener">AFR Young Rich List</a>.</p>
 
@@ -567,7 +569,7 @@ footer strong{color:var(--ink)}
   <p class="byline">Rebecca</p>
   <blockquote>The depth of the content is the real differentiator compared to other courses I've done. The strategies around approaching business deals are unconventional yet completely logical.</blockquote>
   <p class="byline">Sam</p>
-  <p class="sm dim">Aaron Sansoni is rated 4.8 out of 5 on <a href="https://au.trustpilot.com/review/aaronsansoni.com" target="_blank" rel="noopener">Trustpilot</a> across more than 400 reviews.</p>
+  <div class="rating"><span class="score">4.9</span><span class="rtxt">out of 5 on <a href="https://au.trustpilot.com/review/aaronsansoni.com" target="_blank" rel="noopener">Trustpilot</a><br><span class="rsub">across more than 400 reviews</span></span></div>
 </section>
 
 <section id="awards">
