@@ -711,9 +711,14 @@ footer strong{color:var(--ink)}
     wrapEl.hidden=false;
     if(betweenEl) betweenEl.hidden = (n!=='1');
     if(hint) hint.textContent='Showing your path below. Pick a different number any time.';
-    if(scroll){
-      var t=document.getElementById(paths[n]);
-      if(t) t.scrollIntoView({behavior:'smooth',block:'center'});
+    if(scroll && wrapEl){
+      /* Land on the "Your path" heading, not mid-panel, so nothing above is skipped. */
+      var y=wrapEl.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop)-18;
+      if(y<0) y=0;
+      if(window.scrollTo){
+        try{ window.scrollTo({top:y,behavior:'smooth'}); }
+        catch(e){ window.scrollTo(0,y); }
+      }
     }
   }
   btns.forEach(function(b){ b.addEventListener('click',function(){ select(b.dataset.stage,true); }); });
