@@ -125,6 +125,15 @@ ul.ticks li::before{content:""; position:absolute; left:0; top:9px; width:7px; h
 .milestone{margin:24px auto 4px; max-width:250px; text-align:center}
 .milestone img{display:block; width:100%; max-width:100%; height:auto; border-radius:10px; border:1px solid var(--line)}
 .milestone figcaption{font-family:var(--display); font-size:13px; font-weight:500; color:var(--ink-dim); margin-top:9px; line-height:1.45}
+#totop{position:fixed; right:18px; bottom:18px; z-index:5; width:48px; height:48px; border-radius:50%;
+  padding-bottom:env(safe-area-inset-bottom, 0px); border:1px solid rgba(139,92,246,.55);
+  background:rgba(20,13,31,.92); color:var(--ink); cursor:pointer; display:grid; place-items:center;
+  opacity:0; visibility:hidden; transition:opacity .25s ease, visibility .25s ease;
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px)}
+#totop.on{opacity:1; visibility:visible}
+#totop:hover{border-color:var(--empire); background:rgba(139,92,246,.22)}
+#totop svg{display:block}
+@media(min-width:900px){#totop{right:28px; bottom:28px}}
 details{border-top:1px solid var(--line)}
 details summary{cursor:pointer; list-style:none; padding:15px 30px 15px 0; position:relative;
   font-family:var(--display); font-size:16px; font-weight:500; line-height:1.45}
@@ -704,6 +713,8 @@ footer strong{color:var(--ink)}
   <p>Aaron Sansoni Group International Pty Ltd &middot; 84&ndash;88 Montague Street, South Melbourne VIC 3205 &middot; +61 3 9088 6250 &middot; <a href="https://empiremastery.aaronsansoni.com/terms-conditions" target="_blank" rel="noopener">Terms &amp; Conditions</a> &middot; &copy; 2026</p>
 </footer>
 
+<button id="totop" type="button" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
 </div>
 
 <script>
@@ -811,6 +822,39 @@ footer strong{color:var(--ink)}
       });
     });
   }
+
+  /* Back to top, once they're well down the page. */
+  var toTop = document.getElementById('totop');
+  if (toTop) {
+    var showAfter = 900, ticking = false;
+    function syncTop(){
+      ticking = false;
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      toTop.classList.toggle('on', y > showAfter);
+    }
+    window.addEventListener('scroll', function(){
+      if (!ticking) { ticking = true; window.requestAnimationFrame(syncTop); }
+    }, {passive:true});
+    syncTop();
+    toTop.addEventListener('click', function(){
+      try { window.scrollTo({top:0, behavior:'smooth'}); }
+      catch(e) { window.scrollTo(0,0); }
+    });
+  }
+
+  /* If the link carried ?p=their-name, pass it through with their answers
+     so a submission says who it came from. */
+  try {
+    var who = new URLSearchParams(window.location.search).get('p');
+    if (who) {
+      var f = document.getElementById('qform');
+      if (f) {
+        var h = document.createElement('input');
+        h.type = 'hidden'; h.name = 'Sent from link'; h.value = who;
+        f.appendChild(h);
+      }
+    }
+  } catch(e) {}
 
   /* Films without poster art: pull one frame in as a thumbnail when they
      come near the viewport, so the page doesn't fetch 24 videos up front. */
